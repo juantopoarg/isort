@@ -119,6 +119,8 @@
     font-family:var(--display);font-weight:800;font-size:18px;min-width:64px;min-height:44px;padding:6px 16px;
     border-radius:999px;border:3px solid transparent;border-bottom:5px solid #D9D7E3;background:#F4F3F8;color:var(--ink);cursor:pointer;
   }
+  .chip:disabled{opacity:.4;cursor:default;}
+  #diffChips .chip{min-width:0;padding:6px 12px;font-size:16px;flex:1 1 auto;}
   .chip.on{background:var(--sun);border-color:var(--sun-dark);color:var(--ink);}
 
   .btn{
@@ -461,7 +463,15 @@
         </div>
       </div>
 
-      <h2 data-i18n="lenTitle"></h2>
+      <h2 data-i18n="diffTitle"></h2>
+      <div class="chips" id="diffChips">
+        <button class="chip" data-diff="facil"></button>
+        <button class="chip" data-diff="media"></button>
+        <button class="chip" data-diff="dificil"></button>
+        <button class="chip" data-diff="all"></button>
+      </div>
+
+      <h2 data-i18n="lenTitle" style="margin-top:14px"></h2>
       <div class="chips" id="lenChips">
         <button class="chip" data-len="10">10</button>
         <button class="chip" data-len="20">20</button>
@@ -593,12 +603,13 @@ const STR = {
   es:{
     tagline:"¡Ordená, arrastrá y acertá!",
     byCategory:"Jugar por categoría", allCats:"Todas las categorías",
-    catEmpty:"No hay rondas de esta categoría en este ámbito. Probá con otro.",
+    catEmpty:"No hay rondas con estos filtros. Probá con otros.",
     scopeGlobal:"Global", scopeGlobalSub:"Cosas que puede saber cualquiera en el mundo",
     scopeLocal:"Local", scopeLocalSub:"Argentina y Sudamérica",
     scopeAll:"Todas", scopeAllSub:"Todo mezclado",
     rounds:"{n} rondas",
     lenTitle:"Rondas por partida", lenAll:"Todas",
+    diffTitle:"Dificultad", diffAll:"Todas",
     play:"¡Jugar!", catalog:"Catálogo",
     catalogTitle:"Catálogo de rondas", tabAll:"Todas",
     roundOf:"Ronda {a} / {b}",
@@ -629,12 +640,13 @@ const STR = {
   en:{
     tagline:"Sort it, drag it, nail it!",
     byCategory:"Play by category", allCats:"All categories",
-    catEmpty:"No rounds in this category for this scope. Try another one.",
+    catEmpty:"No rounds match these filters. Try others.",
     scopeGlobal:"Global", scopeGlobalSub:"Stuff anyone in the world can know",
     scopeLocal:"Local", scopeLocalSub:"Argentina & South America",
     scopeAll:"All", scopeAllSub:"Everything mixed",
     rounds:"{n} rounds",
     lenTitle:"Rounds per game", lenAll:"All",
+    diffTitle:"Difficulty", diffAll:"All",
     play:"Play!", catalog:"Catalog",
     catalogTitle:"Round catalog", tabAll:"All",
     roundOf:"Round {a} / {b}",
@@ -731,6 +743,7 @@ let lenSel   = parseInt(store('len') || '10', 10);
 let catTab   = 'all';
 let byCat    = store('bycat') === '1';
 let catSel   = store('cat') || '';
+let diffSel  = store('diff') || 'all';
 
 let queue = [], qi = 0, order = [], confirmed = false, peeking = false;
 let totalScore = 0, maxScore = 0, lastAciertos = 0;
@@ -772,7 +785,8 @@ function correctOrder(r){
 function rankMap(r){ const m={}; correctOrder(r).forEach((id,i)=>{ m[id]=i; }); return m; }
 function itemById(r,id){ return r.items.find(i=>i.id===id); }
 function inScope(r){ return scopeSel==='all' || r.scope===scopeSel; }
-function pool(){ return DATA.filter(r => inScope(r) && (!byCat || r.cat===catSel)); }
+function pool(){ return DATA.filter(r => inScope(r) && (!byCat || r.cat===catSel) && (diffSel==='all' || r.dif===diffSel)); }
+function diffCount(d){ return DATA.filter(r => inScope(r) && (!byCat || r.cat===catSel) && (d==='all' || r.dif===d)).length; }
 function catKeys(){ return CAT_ORDER.filter(k => DATA.some(r => r.cat===k)); }
 function catCount(k){ return DATA.filter(r => r.cat===k && inScope(r)).length; }
 function buildCatGrid(){
@@ -833,6 +847,14 @@ function renderHome(){
   $('cntAll').textContent    = t('rounds',{n:base.length});
   $('homeFoot').textContent  = t('foot',{n:DATA.length});
   document.querySelectorAll('.scope-btn').forEach(b => b.classList.toggle('on', b.dataset.scope===scopeSel));
+  if(diffSel!=='all' && !DIFF[diffSel]) diffSel = 'all';
+  document.querySelectorAll('#diffChips .chip').forEach(b => {
+    const d = b.dataset.diff, n = diffCount(d);
+    b.textContent = (d==='all' ? t('diffAll') : P(DIFF[d])) + ' · ' + n;
+    b.classList.toggle('on', d===diffSel);
+    b.setAttribute('aria-pressed', d===diffSel ? 'true' : 'false');
+    b.disabled = n === 0;
+  });
   document.querySelectorAll('#lenChips .chip').forEach(b => b.classList.toggle('on', parseInt(b.dataset.len,10)===lenSel));
   // selector de categorías
   const tg = $('catToggle');
@@ -851,7 +873,7 @@ function renderHome(){
   });
   const empty = pool().length === 0;
   $('btnPlay').disabled = empty;
-  const top = byCat ? null : getList(scoreKey())[0];
+  const top = (byCat || diffSel!=='all') ? null : getList(scoreKey())[0];
   $('bestLine').textContent = empty ? t('catEmpty') : (top ? t('bestLine',{p:top.pts}) : '');
 }
 
@@ -937,7 +959,7 @@ function startFromHome(){
 function startSession(rounds, from){
   queue = rounds; qi = 0; totalScore = 0; maxScore = 0; returnTo = from;
   points = 0; streak = 0; bestStreak = 0; roundInfo = null;
-  gameKey = (from==='home' && byCat) ? '' : scoreKey(); recState = {status:'none', rank:0};
+  gameKey = (from==='home' && (byCat || diffSel!=='all')) ? '' : scoreKey(); recState = {status:'none', rank:0};
   showScreen('game');
   loadRound();
 }
@@ -1247,6 +1269,9 @@ document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click
 }));
 document.querySelectorAll('.scope-btn').forEach(b => b.addEventListener('click', () => {
   scopeSel = b.dataset.scope; store('scope', scopeSel); renderHome();
+}));
+document.querySelectorAll('#diffChips .chip').forEach(b => b.addEventListener('click', () => {
+  diffSel = b.dataset.diff; store('diff', diffSel); renderHome();
 }));
 document.querySelectorAll('#lenChips .chip').forEach(b => b.addEventListener('click', () => {
   lenSel = parseInt(b.dataset.len,10); store('len', String(lenSel)); renderHome();
