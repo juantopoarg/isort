@@ -63,11 +63,13 @@
   .icon-btn:active{transform:translateY(3px);border-bottom-width:1px;}
   .right{display:flex;align-items:center;gap:8px;}
   .icon-btn.off{opacity:.7;}
-  .lang{display:flex;background:rgba(0,0,0,.22);border-radius:999px;padding:4px;gap:2px;}
+  .topbar{position:relative;z-index:20;}
+  .lang{touch-action:manipulation;display:flex;background:rgba(0,0,0,.22);border-radius:999px;padding:4px;gap:2px;}
   .lang button{
     font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.04em;
-    border:none;background:transparent;color:#fff;padding:6px 14px;border-radius:999px;cursor:pointer;min-height:34px;
+    border:none;background:transparent;color:#fff;padding:6px 16px;position:relative;touch-action:manipulation;-webkit-tap-highlight-color:transparent;border-radius:999px;cursor:pointer;min-height:34px;
   }
+  .lang button::before{content:'';position:absolute;inset:-4px -1px;}
   .lang button.on{background:#fff;color:var(--ink);}
 
   /* ---------- Pantallas ---------- */
@@ -191,6 +193,15 @@
     padding:8px 4px;cursor:pointer;min-height:40px;
   }
   .tabs button.on{background:#fff;color:var(--ink);}
+  .stats{background:#fff;color:var(--ink);border-radius:20px;border-bottom:6px solid rgba(0,0,0,.2);padding:8px 10px;margin-bottom:6px;overflow-x:auto;}
+  .stats table{width:100%;border-collapse:collapse;font-size:13px;}
+  .stats td:first-child{white-space:normal;line-height:1.15;}
+  .stats th,.stats td{padding-left:2px;padding-right:2px;}
+  .stats th{font-family:var(--display);font-weight:800;text-align:center;padding:6px 4px;color:var(--ink-soft);font-size:13px;}
+  .stats th:first-child,.stats td:first-child{text-align:left;}
+  .stats td{text-align:center;padding:5px 4px;border-top:1px solid #EEECF4;font-weight:700;}
+  .stats .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;}
+  .stats .tot td{font-family:var(--display);font-weight:800;border-top:2px solid #D9D7E3;}
   .sec-head{font-family:var(--display);font-weight:800;font-size:20px;margin:14px 2px 8px;text-shadow:0 2px 0 rgba(0,0,0,.2);}
   .cat-row{
     display:flex;align-items:stretch;width:100%;text-align:left;background:#fff;color:var(--ink);border:none;
@@ -438,17 +449,14 @@
         <button class="scope-btn" data-scope="global">
           <span class="ico">🌎</span>
           <span class="txt"><span class="nm" data-i18n="scopeGlobal"></span></span>
-          <span class="cnt" id="cntGlobal"></span>
         </button>
         <button class="scope-btn" data-scope="local">
           <span class="ico">📍</span>
           <span class="txt"><span class="nm" data-i18n="scopeLocal"></span><span class="sub" data-i18n="scopeLocalSub"></span></span>
-          <span class="cnt" id="cntLocal"></span>
         </button>
         <button class="scope-btn" data-scope="all">
           <span class="ico">🎲</span>
           <span class="txt"><span class="nm" data-i18n="scopeAll"></span><span class="sub" data-i18n="scopeAllSub"></span></span>
-          <span class="cnt" id="cntAll"></span>
         </button>
       </div>
 
@@ -609,7 +617,7 @@ const STR = {
     scopeAll:"Todas", scopeAllSub:"Todo mezclado",
     rounds:"{n} rondas",
     lenTitle:"Rondas por partida", lenAll:"Todas",
-    diffTitle:"Dificultad", diffAll:"Todas",
+    diffTitle:"Dificultad", diffAll:"Todas", statTopic:"Tema", statTotal:"Total",
     play:"¡Jugar!", catalog:"Catálogo",
     catalogTitle:"Catálogo de rondas", tabAll:"Todas",
     roundOf:"Ronda {a} / {b}",
@@ -646,7 +654,7 @@ const STR = {
     scopeAll:"All", scopeAllSub:"Everything mixed",
     rounds:"{n} rounds",
     lenTitle:"Rounds per game", lenAll:"All",
-    diffTitle:"Difficulty", diffAll:"All",
+    diffTitle:"Difficulty", diffAll:"All", statTopic:"Topic", statTotal:"Total",
     play:"Play!", catalog:"Catalog",
     catalogTitle:"Round catalog", tabAll:"All",
     roundOf:"Round {a} / {b}",
@@ -795,7 +803,7 @@ function buildCatGrid(){
     const b = document.createElement('button');
     b.type = 'button'; b.className = 'cat-chip'; b.dataset.cat = k;
     b.style.setProperty('--cc', CATS[k].c); b.style.setProperty('--cc-dark', shade(CATS[k].c, .25));
-    b.innerHTML = '<span class="e"></span><span class="tx"><span class="nm"></span><span class="ct"></span></span>';
+    b.innerHTML = '<span class="e"></span><span class="tx"><span class="nm"></span></span>';
     b.querySelector('.e').textContent = CATS[k].e;
     b.addEventListener('click', () => { catSel = k; store('cat', k); renderHome(); });
     g.appendChild(b);
@@ -842,15 +850,12 @@ function applyLang(){
 function renderHome(){
   if(!catKeys().includes(catSel)) catSel = '';
   const base = DATA.filter(r => !byCat || r.cat===catSel);
-  $('cntGlobal').textContent = t('rounds',{n:base.filter(r=>r.scope==='global').length});
-  $('cntLocal').textContent  = t('rounds',{n:base.filter(r=>r.scope==='local').length});
-  $('cntAll').textContent    = t('rounds',{n:base.length});
   $('homeFoot').textContent  = t('foot',{n:DATA.length});
   document.querySelectorAll('.scope-btn').forEach(b => b.classList.toggle('on', b.dataset.scope===scopeSel));
   if(diffSel!=='all' && !DIFF[diffSel]) diffSel = 'all';
   document.querySelectorAll('#diffChips .chip').forEach(b => {
     const d = b.dataset.diff, n = diffCount(d);
-    b.textContent = (d==='all' ? t('diffAll') : P(DIFF[d])) + ' · ' + n;
+    b.textContent = (d==='all' ? t('diffAll') : P(DIFF[d]));
     b.classList.toggle('on', d===diffSel);
     b.setAttribute('aria-pressed', d===diffSel ? 'true' : 'false');
     b.disabled = n === 0;
@@ -866,7 +871,6 @@ function renderHome(){
   document.querySelectorAll('#catGrid .cat-chip').forEach(b => {
     const k = b.dataset.cat, n = catCount(k), on = byCat && k===catSel;
     b.querySelector('.nm').textContent = P(CATS[k].n);
-    b.querySelector('.ct').textContent = t('rounds',{n:n});
     b.classList.toggle('on', on);
     b.setAttribute('aria-pressed', on ? 'true' : 'false');
     b.disabled = n === 0;
@@ -924,6 +928,16 @@ function renderScores(){
 function renderCatalog(){
   document.querySelectorAll('#catTabs button').forEach(b => b.classList.toggle('on', b.dataset.tab===catTab));
   const box = $('catList'); box.innerHTML = '';
+  const sc0 = catTab==='all' ? ['global','local'] : [catTab];
+  const base = DATA.filter(r => sc0.includes(r.scope));
+  const tb = document.createElement('div'); tb.className = 'stats';
+  let html = '<table><thead><tr><th>' + t('statTopic') + '</th>' + ['facil','media','dificil'].map(d => '<th>' + P(DIFF[d]) + '</th>').join('') + '<th>Σ</th></tr></thead><tbody>';
+  catKeys().forEach(k => {
+    const rs = base.filter(r => r.cat===k); if(!rs.length) return;
+    html += '<tr><td><span class="dot" style="background:' + CATS[k].c + '"></span>' + CATS[k].e + ' ' + P(CATS[k].n) + '</td>' + ['facil','media','dificil'].map(d => '<td>' + rs.filter(r=>r.dif===d).length + '</td>').join('') + '<td><b>' + rs.length + '</b></td></tr>';
+  });
+  html += '<tr class="tot"><td>' + t('statTotal') + '</td>' + ['facil','media','dificil'].map(d => '<td>' + base.filter(r=>r.dif===d).length + '</td>').join('') + '<td>' + base.length + '</td></tr></tbody></table>';
+  tb.innerHTML = html; box.appendChild(tb);
   const scopes = catTab==='all' ? ['global','local'] : [catTab];
   scopes.forEach(sc => {
     const rows = DATA.filter(r=>r.scope===sc)
