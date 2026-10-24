@@ -751,7 +751,7 @@ let lenSel   = parseInt(store('len') || '10', 10);
 let catTab   = 'all';
 let byCat    = store('bycat') === '1';
 let catSel   = store('cat') || '';
-let diffSel  = store('diff') || 'all';
+let diffSel  = 'all';
 
 let queue = [], qi = 0, order = [], confirmed = false, peeking = false;
 let totalScore = 0, maxScore = 0, lastAciertos = 0;
@@ -1285,7 +1285,7 @@ document.querySelectorAll('.scope-btn').forEach(b => b.addEventListener('click',
   scopeSel = b.dataset.scope; store('scope', scopeSel); renderHome();
 }));
 document.querySelectorAll('#diffChips .chip').forEach(b => b.addEventListener('click', () => {
-  diffSel = b.dataset.diff; store('diff', diffSel); renderHome();
+  diffSel = b.dataset.diff; renderHome();
 }));
 document.querySelectorAll('#lenChips .chip').forEach(b => b.addEventListener('click', () => {
   lenSel = parseInt(b.dataset.len,10); store('len', String(lenSel)); renderHome();
