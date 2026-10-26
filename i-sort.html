@@ -202,6 +202,77 @@
   .stats td{text-align:center;padding:5px 4px;border-top:1px solid #EEECF4;font-weight:700;}
   .stats .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;}
   .stats .tot td{font-family:var(--display);font-weight:800;border-top:2px solid #D9D7E3;}
+  /* ---------- Logros ---------- */
+  .prof{display:flex;align-items:center;gap:12px;width:100%;margin:0 0 14px;padding:10px 14px;border:none;border-radius:20px;background:rgba(255,255,255,.2);color:#fff;border-bottom:5px solid rgba(0,0,0,.2);cursor:pointer;font-family:var(--display);text-align:left;}
+  .prof:active{transform:translateY(3px);border-bottom-width:2px;}
+  .prof .av{width:48px;height:48px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;flex:none;border-bottom:4px solid rgba(0,0,0,.2);}
+  .prof .mid{flex:1;min-width:0;}
+  .prof .nm{display:block;font-weight:800;font-size:17px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .prof .lv{display:block;font-size:13px;font-weight:700;opacity:.95;}
+  .prof .cnt{font-weight:800;background:#fff;color:var(--ink);border-radius:99px;padding:5px 10px;font-size:14px;flex:none;}
+  .xpbar{display:block;height:10px;border-radius:99px;background:rgba(0,0,0,.25);overflow:hidden;margin-top:5px;}
+  .xpbar i{display:block;height:100%;background:var(--sun);border-radius:99px;transition:width .5s;}
+  .ahead{background:#fff;color:var(--ink);border-radius:22px;border-bottom:6px solid var(--chunk);padding:14px;margin-bottom:14px;display:flex;gap:14px;align-items:center;}
+  .ahead .av{width:64px;height:64px;border-radius:50%;background:#F4F3F8;display:flex;align-items:center;justify-content:center;font-size:38px;flex:none;}
+  .ahead .mid{flex:1;min-width:0;}
+  .ahead .nm{font-family:var(--display);font-weight:800;font-size:20px;line-height:1.1;}
+  .ahead .lv{font-size:14px;font-weight:700;color:var(--ink-soft);margin-top:2px;}
+  .ahead .xpbar{background:#EEECF4;height:12px;}
+  .ahead .xpbar i{background:linear-gradient(90deg,#FFB400,#FFD43B);}
+  .ahead .sub{font-size:12.5px;font-weight:700;color:var(--ink-soft);margin-top:4px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;}
+  .ach{display:flex;gap:12px;background:#fff;color:var(--ink);border-radius:18px;border-bottom:5px solid rgba(0,0,0,.18);padding:12px;margin-bottom:10px;--tc:#9AA5B1;}
+  .ach.done{box-shadow:inset 6px 0 0 var(--tc);}
+  .ach-ic{width:46px;height:46px;border-radius:50%;background:#F4F3F8;font-size:25px;flex:none;display:flex;align-items:center;justify-content:center;}
+  .ach.done .ach-ic{background:#FFF6D6;}
+  .ach-bd{flex:1;min-width:0;}
+  .ach-nm{font-family:var(--display);font-weight:800;font-size:17px;line-height:1.15;}
+  .ach-ds{font-size:13.5px;color:var(--ink-soft);margin-top:1px;}
+  .ach-bar{height:10px;background:#EEECF4;border-radius:99px;overflow:hidden;margin:7px 0 5px;}
+  .ach-bar i{display:block;height:100%;background:var(--tc);border-radius:99px;}
+  .ach.todo .ach-bar i{background:#B9B5C9;}
+  .ach-meta{display:flex;justify-content:space-between;gap:4px 10px;font-size:12.5px;font-weight:700;color:var(--ink-soft);flex-wrap:wrap;}
+  .acat{background:#fff;color:var(--ink);border-radius:18px;border-bottom:5px solid rgba(0,0,0,.18);margin-bottom:10px;overflow:hidden;}
+  .acat-h{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border:none;background:transparent;font:inherit;text-align:left;cursor:pointer;color:inherit;}
+  .acat-h .e{font-size:26px;width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:var(--cc);flex:none;}
+  .acat-h .tx{flex:1;min-width:0;}
+  .acat-h .nm{display:block;font-family:var(--display);font-weight:800;font-size:17px;line-height:1.15;}
+  .acat-h .sb{display:block;font-size:12.5px;font-weight:700;color:var(--ink-soft);}
+  .acat-h .meds{font-size:17px;letter-spacing:1px;white-space:nowrap;}
+  .acat-h .meds .off{filter:grayscale(1);opacity:.3;}
+  .acat-h .ar{font-size:14px;color:var(--ink-soft);transition:transform .2s;}
+  .acat.open .acat-h .ar{transform:rotate(90deg);}
+  .acat-b{display:none;padding:4px 10px 2px;background:#F1F0F7;}
+  .acat.open .acat-b{display:block;}
+  .acat-b .ach{box-shadow:none;}
+  .acat-b .ach.done{box-shadow:inset 6px 0 0 var(--tc);}
+  .csec{font-family:var(--display);font-weight:800;font-size:19px;margin:16px 2px 8px;text-shadow:0 2px 0 rgba(0,0,0,.2);display:flex;justify-content:space-between;}
+  .avgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(54px,1fr));gap:8px;background:#fff;border-radius:18px;padding:10px;border-bottom:5px solid rgba(0,0,0,.18);}
+  .avb{aspect-ratio:1;border-radius:16px;border:3px solid transparent;border-bottom:5px solid #D9D7E3;background:#F4F3F8;font-size:28px;cursor:pointer;position:relative;padding:0;}
+  .avb.on{background:var(--sun);border-color:var(--sun-dark);}
+  .avb.lock{filter:grayscale(1);opacity:.5;}
+  .avb.lock::after{content:'🔒';position:absolute;right:1px;bottom:-2px;font-size:14px;}
+  .tilist{background:#fff;color:var(--ink);border-radius:18px;padding:6px;border-bottom:5px solid rgba(0,0,0,.18);}
+  .tirow{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;border:none;background:transparent;font:inherit;color:inherit;padding:10px;border-radius:12px;cursor:pointer;text-align:left;font-weight:700;}
+  .tirow.on{background:#FFF1B8;}
+  .tirow.lock{opacity:.5;}
+  .tirow .st{font-size:13px;color:var(--ink-soft);}
+  .chint{background:rgba(0,0,0,.22);border-radius:14px;padding:8px 12px;font-weight:700;font-size:14px;margin-top:8px;min-height:20px;}
+  .sprog{background:#fff;color:var(--ink);border-radius:18px;border-bottom:5px solid var(--chunk);padding:12px;width:100%;max-width:340px;margin:0 0 14px;text-align:left;}
+  .sprog .l1{font-family:var(--display);font-weight:800;font-size:17px;display:flex;justify-content:space-between;gap:8px;}
+  .sprog .xpbar{background:#EEECF4;}
+  .sprog .xpbar i{background:linear-gradient(90deg,#FFB400,#FFD43B);}
+  .sprog h4{margin:10px 0 4px;font-size:13px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;}
+  .sprog .it{font-size:14.5px;font-weight:700;margin:3px 0;display:flex;justify-content:space-between;gap:8px;}
+  .sprog .it small{color:var(--ink-soft);font-weight:700;white-space:nowrap;}
+  #toasts{position:fixed;top:calc(8px + env(safe-area-inset-top));left:0;right:0;z-index:200;display:flex;flex-direction:column;align-items:center;pointer-events:none;gap:8px;padding:0 12px;}
+  .toast{pointer-events:auto;max-width:420px;width:100%;background:#fff;color:var(--ink);border-radius:18px;border-bottom:5px solid rgba(0,0,0,.22);padding:10px 14px;display:flex;gap:12px;align-items:center;box-shadow:0 8px 24px rgba(0,0,0,.3);transform:translateY(-140%);opacity:0;transition:transform .3s,opacity .3s;}
+  .toast.in{transform:none;opacity:1;}
+  .toast .ti{font-size:32px;line-height:1;}
+  .toast .k{font-size:11.5px;font-weight:800;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.05em;}
+  .toast .nm{font-family:var(--display);font-weight:800;font-size:17px;line-height:1.1;}
+  .toast .rw{font-size:12.5px;color:var(--ink-soft);font-weight:700;}
+  .toast.lvl{background:var(--sun);}
+  .toast.lvl .k,.toast.lvl .rw{color:#5b4a00;}
   .sec-head{font-family:var(--display);font-weight:800;font-size:20px;margin:14px 2px 8px;text-shadow:0 2px 0 rgba(0,0,0,.2);}
   .cat-row{
     display:flex;align-items:stretch;width:100%;text-align:left;background:#fff;color:var(--ink);border:none;
@@ -444,6 +515,12 @@
     <h1 class="logo logo-en hidden" id="logoEn" aria-label="This-ORDER"><small aria-hidden="true">This-</small><em aria-hidden="true"><svg class="eye" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="42" fill="#fff" stroke="currentColor" stroke-width="16"/><g class="ball"><g class="iris"><circle cx="50" cy="50" r="23" fill="#7C4DFF"/><circle cx="50" cy="50" r="11.5" fill="#2B2A33"/><circle cx="42" cy="41" r="5.5" fill="#fff"/></g></g></svg>RDER</em></h1>
     <p class="tagline" data-i18n="tagline"></p>
 
+    <button class="prof" id="btnProfile" type="button">
+      <span class="av" id="pfAv"></span>
+      <span class="mid"><span class="nm" id="pfName"></span><span class="lv" id="pfLvl"></span><span class="xpbar"><i id="pfBar"></i></span></span>
+      <span class="cnt" id="pfCount"></span>
+    </button>
+
     <div class="panel">
       <div class="scope-list" id="scopeList">
         <button class="scope-btn" data-scope="global">
@@ -483,6 +560,8 @@
       <div class="chips" id="lenChips">
         <button class="chip" data-len="10">10</button>
         <button class="chip" data-len="20">20</button>
+        <button class="chip len-lock hidden" data-len="30">30</button>
+        <button class="chip len-lock hidden" data-len="50">50</button>
         <button class="chip" data-len="0" data-i18n="lenAll"></button>
       </div>
     </div>
@@ -518,10 +597,24 @@
     <div class="chips onbg" id="scoreLens">
       <button class="chip" data-len="10">10</button>
       <button class="chip" data-len="20">20</button>
+      <button class="chip len-lock hidden" data-len="30">30</button>
+      <button class="chip len-lock hidden" data-len="50">50</button>
       <button class="chip" data-len="0" data-i18n="lenAll"></button>
     </div>
     <div id="scoreList"></div>
     <button class="btn ghost small" id="btnClear"></button>
+  </section>
+
+  <!-- LOGROS -->
+  <section class="screen" id="screenAch">
+    <h2 class="screen-title">🏅 <span data-i18n="achTitle"></span></h2>
+    <div class="ahead" id="achHead"></div>
+    <div class="tabs" id="achTabs">
+      <button data-tab="general" data-i18n="achTabGen"></button>
+      <button data-tab="cats" data-i18n="achTabCat"></button>
+      <button data-tab="coll" data-i18n="achTabColl"></button>
+    </div>
+    <div id="achBody"></div>
   </section>
 
   <!-- JUEGO -->
@@ -564,6 +657,7 @@
       <div class="pts" id="sumPts"></div>
       <p class="stats" id="sumStats"></p>
       <p id="sumMsg"></p>
+      <div class="sprog hidden" id="sumProg"></div>
       <div class="rec hidden" id="recBox">
         <p id="recText"></p>
         <div class="nrow" id="recForm">
@@ -618,6 +712,13 @@ const STR = {
     rounds:"{n} rondas",
     lenTitle:"Rondas por partida", lenAll:"Todas",
     diffTitle:"Dificultad", diffAll:"Todas", statTopic:"Tema", statTotal:"Total",
+    achTitle:"Logros", achTabGen:"Generales", achTabCat:"Categorías", achTabColl:"Colección",
+    level:"Nivel {n}", achCount:"{a} de {b} logros", xpNext:"{a} / {b} XP", toNext:"{n} XP para el nivel {l}",
+    achUnlocked:"¡Logro desbloqueado!", lvlUp:"¡Nivel {n}!", lvlUpSub:"Título: {t}",
+    rwLen:"partidas de {n} rondas", collAv:"Avatares", collTi:"Títulos", collCo:"Contenido",
+    hintAch:"Se desbloquea con: «{n}»", hintLvl:"Alcanzá el nivel {n}", hintTap:"Tocá uno desbloqueado para equiparlo.",
+    equipped:"Equipado", locked:"Bloqueado", unlockedLbl:"Desbloqueado", tierOf:"{a}/{b}",
+    sumNew:"Logros de esta partida", sumNear:"Casi lo lográs", sumLevel:"{t} · Nivel {n}",
     play:"¡Jugar!", catalog:"Catálogo",
     catalogTitle:"Catálogo de rondas", tabAll:"Todas",
     roundOf:"Ronda {a} / {b}",
@@ -655,6 +756,13 @@ const STR = {
     rounds:"{n} rounds",
     lenTitle:"Rounds per game", lenAll:"All",
     diffTitle:"Difficulty", diffAll:"All", statTopic:"Topic", statTotal:"Total",
+    achTitle:"Achievements", achTabGen:"General", achTabCat:"Categories", achTabColl:"Collection",
+    level:"Level {n}", achCount:"{a} of {b} achievements", xpNext:"{a} / {b} XP", toNext:"{n} XP to level {l}",
+    achUnlocked:"Achievement unlocked!", lvlUp:"Level {n}!", lvlUpSub:"Title: {t}",
+    rwLen:"{n}-round games", collAv:"Avatars", collTi:"Titles", collCo:"Content",
+    hintAch:"Unlock with: “{n}”", hintLvl:"Reach level {n}", hintTap:"Tap an unlocked one to equip it.",
+    equipped:"Equipped", locked:"Locked", unlockedLbl:"Unlocked", tierOf:"{a}/{b}",
+    sumNew:"Achievements this game", sumNear:"Almost there", sumLevel:"{t} · Level {n}",
     play:"Play!", catalog:"Catalog",
     catalogTitle:"Round catalog", tabAll:"All",
     roundOf:"Round {a} / {b}",
@@ -815,12 +923,13 @@ function buildCatGrid(){
    ========================================================= */
 function showScreen(name){
   screen = name;
-  const ids = {home:'screenHome', catalog:'screenCatalog', scores:'screenScores', game:'screenGame', summary:'screenSummary'};
+  const ids = {ach:'screenAch', home:'screenHome', catalog:'screenCatalog', scores:'screenScores', game:'screenGame', summary:'screenSummary'};
   for(const k in ids) $(ids[k]).classList.toggle('active', k===name);
   document.querySelector('.app').classList.toggle('in-game', name==='game');
   $('btnBack').classList.toggle('hidden', name==='home');
   if(name!=='game') setTheme(HOME_COLOR);
   window.scrollTo(0,0);
+  syncLenChips();
 }
 function goHome(){ showScreen('home'); renderHome(); }
 function goCatalog(){ showScreen('catalog'); renderCatalog(); }
@@ -840,6 +949,7 @@ function applyLang(){
   renderHome();
   if(screen==='catalog') renderCatalog();
   if(screen==='scores') renderScores();
+  if(screen==='ach') renderAch();
   if(screen==='game') renderGameTexts();
   if(screen==='summary') renderSummary();
 }
@@ -878,6 +988,7 @@ function renderHome(){
   const empty = pool().length === 0;
   $('btnPlay').disabled = empty;
   const top = (byCat || diffSel!=='all') ? null : getList(scoreKey())[0];
+  renderProfile(); syncLenChips();
   $('bestLine').textContent = empty ? t('catEmpty') : (top ? t('bestLine',{p:top.pts}) : '');
 }
 
@@ -972,7 +1083,7 @@ function startFromHome(){
 }
 function startSession(rounds, from){
   queue = rounds; qi = 0; totalScore = 0; maxScore = 0; returnTo = from;
-  points = 0; streak = 0; bestStreak = 0; roundInfo = null;
+  points = 0; streak = 0; bestStreak = 0; roundInfo = null; sessionUnlocked = [];
   gameKey = (from==='home' && (byCat || diffSel!=='all')) ? '' : scoreKey(); recState = {status:'none', rank:0};
   showScreen('game');
   loadRound();
@@ -1171,6 +1282,7 @@ function confirmOrder(){
   else streak = 0;
   points += base + bonus;
   roundInfo = {base, bonus, streak, lost: !perfect && prevStreak >= 2};
+  trackRound(r, perfect);
   $('scoreTally').textContent = '⭐ ' + points;
   renderStreakTag(true);
   renderPoints();
@@ -1227,7 +1339,7 @@ function endPeek(){
 /* =========================================================
    RESUMEN
    ========================================================= */
-function showSummary(){ showScreen('summary'); renderSummary(); }
+function showSummary(){ finishGame(); showScreen('summary'); renderSummary(); }
 function renderSummary(){
   const pct = maxScore ? Math.round(totalScore/maxScore*100) : 0;
   $('sumPts').textContent = '⭐ ' + points;
@@ -1236,6 +1348,7 @@ function renderSummary(){
   $('sumMsg').textContent = (pct>=85 ? t('sum1') : pct>=60 ? t('sum2') : t('sum3')) + ' ' + t('sumPct',{p:pct});
   $('btnAgain').textContent = t('again');
   $('btnHome').textContent = t('home');
+  renderSumProg();
   // récord: solo en partidas desde Inicio
   const box = $('recBox');
   if(returnTo !== 'home' || !gameKey){ box.classList.add('hidden'); return; }
@@ -1257,6 +1370,7 @@ function saveRecord(){
   const pct = maxScore ? Math.round(totalScore/maxScore*100) : 0;
   const rank = addScore({name, pts:points, acc:pct, streak:bestStreak, rounds:queue.length, date:Date.now()}, gameKey);
   recState = {status:'saved', rank};
+  prog.records++; evalAch();
   renderSummary();
 }
 function burst(){
@@ -1307,6 +1421,23 @@ $('btnSound').addEventListener('click', () => {
   if(soundOn) tone(880, 0, 0.12, 'triangle', 0.2);
 });
 $('btnPlay').addEventListener('click', startFromHome);
+$('btnProfile').addEventListener('click', goAch);
+document.querySelectorAll('#achTabs button').forEach(b => b.addEventListener('click', () => { achTab = b.dataset.tab; renderAch(); }));
+$('achBody').addEventListener('click', e => {
+  const b = e.target.closest('[data-act]'); if(!b) return;
+  const act = b.dataset.act, v = b.dataset.v;
+  if(act === 'cat'){ achOpenCat = (achOpenCat === v) ? '' : v; renderAch(); return; }
+  if(act === 'av'){
+    const x = avatarList().find(y => y.id === v);
+    if(x && avOwned(x)){ prog.avatar = v; collHint = ''; saveProg(); } else if(x) collHint = hintFor(x);
+    renderAch(); return;
+  }
+  if(act === 'ti'){
+    const x = titleList().find(y => y.id === v);
+    if(x && x.owned){ prog.title = v; collHint = ''; saveProg(); } else if(x) collHint = hintFor(x);
+    renderAch(); return;
+  }
+});
 $('btnScores').addEventListener('click', goScores);
 $('btnSave').addEventListener('click', saveRecord);
 $('nameInput').addEventListener('keydown', e => { if(e.key==='Enter') saveRecord(); });
@@ -1326,6 +1457,280 @@ $('btnAgain').addEventListener('click', () => {
   if(returnTo==='catalog') startSession([queue[0]], 'catalog'); else startFromHome();
 });
 $('btnHome').addEventListener('click', () => { if(returnTo==='catalog') goCatalog(); else goHome(); });
+
+/* =========================================================
+   LOGROS, NIVELES Y RECOMPENSAS
+   Tipos de recompensa: ⚡ progreso (XP) · 🎨 cosmética (avatar)
+   🏷️ reconocimiento (título) · 🔓 contenido (partidas largas)
+   ========================================================= */
+const TIERS = {
+  bronze: {i:'🥉', xp:20,  c:'#CD7F32'},
+  silver: {i:'🥈', xp:50,  c:'#8D9AA8'},
+  gold:   {i:'🥇', xp:120, c:'#F2B705'},
+  diamond:{i:'💎', xp:300, c:'#1FA9E8'}
+};
+const TIER_ORDER = ['bronze','silver','gold','diamond'];
+const LEVEL_TITLES = [[1,['Novato','Rookie']],[3,['Aprendiz','Apprentice']],[5,['Observador','Observer']],[8,['Ordenador','Sorter']],[12,['Estratega','Strategist']],[16,['Erudito','Scholar']],[20,['Sabio','Sage']],[25,['Gran maestro','Grandmaster']],[30,['Leyenda viva','Living legend']]];
+const XP_K = 60;
+function levelOf(xp){ return Math.floor(Math.sqrt(xp / XP_K)) + 1; }
+function levelStart(l){ return XP_K * (l-1) * (l-1); }
+function levelTitleOf(l){ let r = LEVEL_TITLES[0][1]; LEVEL_TITLES.forEach(([n,tt]) => { if(l >= n) r = tt; }); return r; }
+
+const ACH = [];
+function A(id, group, tier, n, d, stat, goal, rw){ ACH.push({id, group, tier, n, d, stat, goal, rw: rw || {}}); }
+// ----- Generales (transversales) -----
+A('g_games1','general','bronze',['Primer paso','First step'],['Completá tu primera partida','Finish your first game'],'games',1);
+A('g_games10','general','silver',['Habitué','Regular'],['Completá 10 partidas','Finish 10 games'],'games',10,{len:30});
+A('g_games50','general','gold',['Veterano','Veteran'],['Completá 50 partidas','Finish 50 games'],'games',50,{len:50,title:['Veterano','Veteran']});
+A('g_games200','general','diamond',['Leyenda','Legend'],['Completá 200 partidas','Finish 200 games'],'games',200,{avatar:'👑',title:['Leyenda del orden','Legend of order']});
+A('g_perf10','general','bronze',['Buen ojo','Good eye'],['Acertá 10 rondas sin errores','Get 10 rounds fully right'],'perfect',10);
+A('g_perf50','general','silver',['Ojo de águila','Eagle eye'],['Acertá 50 rondas sin errores','Get 50 rounds fully right'],'perfect',50,{avatar:'🦅'});
+A('g_perf250','general','gold',['Ojo clínico','Sharp eye'],['Acertá 250 rondas sin errores','Get 250 rounds fully right'],'perfect',250,{title:['Ojo clínico','Sharp eye']});
+A('g_perf1000','general','diamond',['Mirada infinita','Infinite gaze'],['Acertá 1.000 rondas sin errores','Get 1,000 rounds fully right'],'perfect',1000,{avatar:'👁️',title:['Mirada infinita','Infinite gaze']});
+A('g_str3','general','bronze',['En racha','On a roll'],['Encadená 3 rondas perfectas en una partida','Chain 3 perfect rounds in one game'],'bestStreak',3);
+A('g_str5','general','silver',['Imparable','Unstoppable'],['Encadená 5 rondas perfectas en una partida','Chain 5 perfect rounds in one game'],'bestStreak',5,{avatar:'🔥'});
+A('g_str8','general','gold',['Incendiario','Blazing'],['Encadená 8 rondas perfectas en una partida','Chain 8 perfect rounds in one game'],'bestStreak',8,{title:['Incendiario','Blazing']});
+A('g_str12','general','diamond',['Intocable','Untouchable'],['Encadená 12 rondas perfectas en una partida','Chain 12 perfect rounds in one game'],'bestStreak',12,{avatar:'⚡',title:['Intocable','Untouchable']});
+A('g_pts1k','general','bronze',['Mil puntos','A thousand points'],['Sumá 1.000 puntos en total','Earn 1,000 points in total'],'points',1000);
+A('g_pts10k','general','silver',['Diez mil','Ten thousand'],['Sumá 10.000 puntos en total','Earn 10,000 points in total'],'points',10000);
+A('g_pts50k','general','gold',['Cincuenta mil','Fifty thousand'],['Sumá 50.000 puntos en total','Earn 50,000 points in total'],'points',50000,{avatar:'💎'});
+A('g_pg1','general','bronze',['Partida impecable','Flawless game'],['Terminá una partida de 5+ rondas sin ningún error','Finish a game of 5+ rounds with no mistakes'],'perfectGames',1);
+A('g_pg5','general','silver',['Pulso firme','Steady hand'],['Lográ 5 partidas impecables','Get 5 flawless games'],'perfectGames',5);
+A('g_pg20','general','gold',['Perfeccionista','Perfectionist'],['Lográ 20 partidas impecables','Get 20 flawless games'],'perfectGames',20,{title:['Perfeccionista','Perfectionist']});
+A('g_hard10','general','bronze',['Amante del reto','Challenge lover'],['Acertá 10 rondas difíciles sin errores','Get 10 hard rounds fully right'],'hardPerfect',10);
+A('g_hard50','general','silver',['Domador de lo difícil','Hard tamer'],['Acertá 50 rondas difíciles sin errores','Get 50 hard rounds fully right'],'hardPerfect',50);
+A('g_hard150','general','gold',['Sin miedo','Fearless'],['Acertá 150 rondas difíciles sin errores','Get 150 hard rounds fully right'],'hardPerfect',150,{title:['Sin miedo','Fearless']});
+A('g_day3','general','bronze',['Constante','Consistent'],['Jugá 3 días seguidos','Play 3 days in a row'],'bestDays',3);
+A('g_day7','general','silver',['Semana completa','Full week'],['Jugá 7 días seguidos','Play 7 days in a row'],'bestDays',7,{avatar:'🦉'});
+A('g_day30','general','gold',['Hábito de hierro','Iron habit'],['Jugá 30 días seguidos','Play 30 days in a row'],'bestDays',30,{title:['Hábito de hierro','Iron habit']});
+A('g_cat6','general','silver',['Curioso','Curious'],['Jugá rondas de 6 categorías distintas','Play rounds from 6 different categories'],'catsN',6);
+A('g_cat12','general','gold',['Explorador total','Total explorer'],['Jugá rondas de las 12 categorías','Play rounds from all 12 categories'],'catsN',12,{avatar:'🧭',title:['Explorador total','Total explorer']});
+A('g_scope','general','bronze',['Trotamundos','Globetrotter'],['Jugá rondas Globales y Locales','Play both Global and Local rounds'],'scopesN',2);
+A('g_lang','general','bronze',['Políglota','Polyglot'],['Completá una partida en español y otra en inglés','Finish one game in Spanish and one in English'],'langsN',2);
+A('g_rec1','general','bronze',['Salón de la fama','Hall of fame'],['Guardá tu primer récord','Save your first high score'],'records',1);
+A('g_rec5','general','silver',['Habitual del podio','Podium regular'],['Guardá 5 récords','Save 5 high scores'],'records',5);
+A('g_lvl5','general','silver',['Escalando','Climbing'],['Alcanzá el nivel 5','Reach level 5'],'level',5);
+A('g_lvl10','general','gold',['Cima a la vista','Summit in sight'],['Alcanzá el nivel 10','Reach level 10'],'level',10,{avatar:'🚀'});
+A('g_lvl20','general','diamond',['Sabio del orden','Sage of order'],['Alcanzá el nivel 20','Reach level 20'],'level',20,{title:['Sabio del orden','Sage of order']});
+// ----- Por categoría (4 niveles cada una) -----
+CAT_ORDER.forEach(k => {
+  const c = CATS[k], tot = DATA.filter(r => r.cat === k).length, nes = c.n[0], nen = c.n[1];
+  if(!tot) return;
+  A('c_'+k+'_1', k,'bronze',['Curioso de '+nes, nen+' newcomer'],['Jugá 5 rondas de '+nes,'Play 5 '+nen+' rounds'],'c:'+k+':played',5);
+  A('c_'+k+'_2', k,'silver',['Aficionado de '+nes, nen+' fan'],['Acertá 15 rondas de '+nes+' sin errores','Get 15 '+nen+' rounds fully right'],'c:'+k+':perfect',15);
+  A('c_'+k+'_3', k,'gold',['Experto en '+nes, nen+' expert'],['Acertá sin errores 25 rondas distintas de '+nes,'Get 25 different '+nen+' rounds fully right'],'c:'+k+':uniq',25,{avatar:c.e});
+  A('c_'+k+'_4', k,'diamond',['Maestro de '+nes, nen+' master'],['Acertá sin errores las '+tot+' rondas de '+nes,'Get all '+tot+' '+nen+' rounds fully right'],'c:'+k+':uniq',tot,{title:['Maestro de '+nes, nen+' master']});
+});
+const ACH_BY_ID = {}; ACH.forEach(a => { ACH_BY_ID[a.id] = a; });
+
+function newProg(){ return {xp:0, games:0, rounds:0, perfect:0, points:0, bestStreak:0, perfectGames:0, hardPerfect:0, dayLast:'', dayStreak:0, bestDays:0, cats:{}, scopes:{}, langs:{}, records:0, ach:{}, avatar:'🙂', title:''}; }
+function loadProg(){ try{ const o = JSON.parse(store('prog') || 'null'); return (o && typeof o === 'object') ? Object.assign(newProg(), o) : newProg(); }catch(e){ return newProg(); } }
+let prog = loadProg();
+function saveProg(){ store('prog', JSON.stringify(prog)); }
+let sessionUnlocked = [], gameXp = 0;
+let achTab = 'general', achOpenCat = '', collHint = '';
+const fmtN = n => n.toLocaleString(lang === 'en' ? 'en-US' : 'es-AR');
+
+function statVal(k){
+  if(k.startsWith('c:')){
+    const [, cat, f] = k.split(':'); const c = prog.cats[cat] || {};
+    return f === 'played' ? (c.p || 0) : f === 'perfect' ? (c.f || 0) : (c.u || []).length;
+  }
+  switch(k){
+    case 'catsN':   return Object.keys(prog.cats).filter(x => (prog.cats[x].p || 0) > 0).length;
+    case 'scopesN': return Object.keys(prog.scopes).length;
+    case 'langsN':  return Object.keys(prog.langs).length;
+    case 'level':   return levelOf(prog.xp);
+    default:        return prog[k] || 0;
+  }
+}
+function dayKey(d){ return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate(); }
+function touchDay(){
+  const now = new Date(), today = dayKey(now);
+  if(prog.dayLast === today) return;
+  const y = new Date(now); y.setDate(y.getDate()-1);
+  prog.dayStreak = (prog.dayLast === dayKey(y)) ? prog.dayStreak + 1 : 1;
+  prog.dayLast = today;
+  prog.bestDays = Math.max(prog.bestDays, prog.dayStreak);
+}
+function trackRound(r, perfect){
+  touchDay();
+  prog.rounds++;
+  const c = prog.cats[r.cat] || (prog.cats[r.cat] = {p:0, f:0, u:[]});
+  c.p++;
+  prog.scopes[r.scope] = 1;
+  prog.bestStreak = Math.max(prog.bestStreak, streak);
+  if(perfect){
+    prog.perfect++; c.f++;
+    const n = parseInt(r.id.slice(1), 10);
+    if(!c.u.includes(n)) c.u.push(n);
+    if(r.dif === 'dificil') prog.hardPerfect++;
+  }
+  evalAch();
+}
+function finishGame(){
+  gameXp = 0;
+  if(returnTo !== 'home') return;
+  prog.langs[lang] = 1;
+  prog.games++; prog.points += points;
+  const pct = maxScore ? Math.round(totalScore / maxScore * 100) : 0;
+  if(pct === 100 && queue.length >= 5) prog.perfectGames++;
+  gameXp = Math.floor(points / 5);
+  addXp(gameXp);
+  evalAch();
+}
+function addXp(n){
+  const b = levelOf(prog.xp); prog.xp += n; const a = levelOf(prog.xp);
+  if(a > b) toast({kind:'lvl', lvl:a});
+}
+function evalAch(){
+  let again = true, guard = 0;
+  while(again && guard++ < 12){
+    again = false;
+    ACH.forEach(a => {
+      if(prog.ach[a.id]) return;
+      if(statVal(a.stat) >= a.goal){
+        prog.ach[a.id] = Date.now();
+        sessionUnlocked.push(a.id);
+        toast({kind:'ach', a});
+        addXp(a.rw.xp || TIERS[a.tier].xp);
+        again = true;
+      }
+    });
+  }
+  saveProg();
+}
+function rewardLine(a){
+  const p = ['⚡ +' + (a.rw.xp || TIERS[a.tier].xp) + ' XP'];
+  if(a.rw.avatar) p.push('🎨 ' + a.rw.avatar);
+  if(a.rw.title)  p.push('🏷️ «' + P(a.rw.title) + '»');
+  if(a.rw.len)    p.push('🔓 ' + t('rwLen',{n:a.rw.len}));
+  return p.join(' · ');
+}
+function unlockedCount(){ return ACH.filter(a => prog.ach[a.id]).length; }
+function lenUnlocked(n){ return ACH.some(a => a.rw.len === n && prog.ach[a.id]); }
+function syncLenChips(){
+  document.querySelectorAll('.len-lock').forEach(b => b.classList.toggle('hidden', !lenUnlocked(parseInt(b.dataset.len, 10))));
+  if(lenSel > 0 && lenSel !== 10 && lenSel !== 20 && !lenUnlocked(lenSel)){ lenSel = 10; store('len','10'); }
+}
+// ----- avatares y títulos -----
+function avatarList(){ const l = [{id:'🙂', ach:null}]; ACH.forEach(a => { if(a.rw.avatar) l.push({id:a.rw.avatar, ach:a}); }); return l; }
+function avOwned(x){ return !x.ach || !!prog.ach[x.ach.id]; }
+function titleList(){
+  const lv = levelOf(prog.xp), l = LEVEL_TITLES.map(([n,tt]) => ({id:'L'+n, n:tt, lvl:n, owned: lv >= n}));
+  ACH.forEach(a => { if(a.rw.title) l.push({id:'a:'+a.id, n:a.rw.title, ach:a, owned:!!prog.ach[a.id]}); });
+  return l;
+}
+function currentTitle(){
+  const l = titleList(), f = l.find(x => x.id === prog.title && x.owned);
+  return f ? f.n : levelTitleOf(levelOf(prog.xp));
+}
+function hintFor(x){ return x.ach ? t('hintAch',{n:P(x.ach.n)}) : (x.lvl ? t('hintLvl',{n:x.lvl}) : ''); }
+// ----- avisos -----
+let toastQ = [], toastBusy = false;
+function toast(o){ toastQ.push(o); if(!toastBusy) nextToast(); }
+function nextToast(){
+  const o = toastQ.shift();
+  if(!o){ toastBusy = false; return; }
+  toastBusy = true;
+  const el = document.createElement('div');
+  el.className = 'toast' + (o.kind === 'lvl' ? ' lvl' : '');
+  const ic = document.createElement('div'); ic.className = 'ti';
+  const bd = document.createElement('div');
+  const k = document.createElement('div'); k.className = 'k';
+  const nm = document.createElement('div'); nm.className = 'nm';
+  const rw = document.createElement('div'); rw.className = 'rw';
+  if(o.kind === 'lvl'){
+    ic.textContent = '🆙'; k.textContent = '⭐ XP';
+    nm.textContent = t('lvlUp',{n:o.lvl}); rw.textContent = t('lvlUpSub',{t:P(levelTitleOf(o.lvl))});
+  } else {
+    ic.textContent = TIERS[o.a.tier].i; k.textContent = t('achUnlocked');
+    nm.textContent = P(o.a.n); rw.textContent = rewardLine(o.a);
+  }
+  bd.append(k, nm, rw); el.append(ic, bd);
+  $('toasts').appendChild(el);
+  requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('in')));
+  if(soundOn) setTimeout(() => playStreak(o.kind === 'lvl' ? 4 : 3), 450);
+  const close = () => { el.classList.remove('in'); setTimeout(() => { el.remove(); nextToast(); }, 320); };
+  el.addEventListener('click', close);
+  setTimeout(close, toastQ.length > 2 ? 1500 : 2600);
+}
+// ----- perfil en Inicio -----
+function renderProfile(){
+  const lv = levelOf(prog.xp), a = levelStart(lv), b = levelStart(lv+1);
+  $('pfAv').textContent = prog.avatar;
+  $('pfName').textContent = P(currentTitle());
+  $('pfLvl').textContent = t('level',{n:lv}) + ' · ' + t('xpNext',{a:fmtN(prog.xp), b:fmtN(b)});
+  $('pfBar').style.width = Math.max(2, (prog.xp - a) / (b - a) * 100) + '%';
+  $('pfCount').textContent = '🏅 ' + unlockedCount() + '/' + ACH.length;
+  $('btnProfile').setAttribute('aria-label', t('achTitle'));
+}
+// ----- panel de logros -----
+function achCard(a){
+  const done = prog.ach[a.id], cur = Math.min(statVal(a.stat), a.goal), pct = Math.round(cur / a.goal * 100), T = TIERS[a.tier];
+  const when = done ? '✓ ' + new Date(done).toLocaleDateString(lang === 'en' ? 'en-US' : 'es-AR') : fmtN(cur) + ' / ' + fmtN(a.goal);
+  return '<div class="ach ' + (done ? 'done' : 'todo') + '" style="--tc:' + T.c + '"><div class="ach-ic">' + (done ? T.i : '🔒') + '</div><div class="ach-bd">' +
+    '<div class="ach-nm">' + P(a.n) + '</div><div class="ach-ds">' + P(a.d) + '</div>' +
+    '<div class="ach-bar"><i style="width:' + (done ? 100 : pct) + '%"></i></div>' +
+    '<div class="ach-meta"><span>' + when + '</span><span>' + rewardLine(a) + '</span></div></div></div>';
+}
+function renderAch(){
+  const lv = levelOf(prog.xp), a0 = levelStart(lv), b0 = levelStart(lv+1);
+  $('achHead').innerHTML = '<div class="av">' + prog.avatar + '</div><div class="mid"><div class="nm">' + P(currentTitle()) + '</div><div class="lv">' +
+    t('level',{n:lv}) + ' · ' + t('achCount',{a:unlockedCount(), b:ACH.length}) + '</div><div class="xpbar"><i style="width:' + Math.max(2,(prog.xp-a0)/(b0-a0)*100) + '%"></i></div>' +
+    '<div class="sub"><span>' + t('xpNext',{a:fmtN(prog.xp), b:fmtN(b0)}) + '</span><span>' + t('toNext',{n:fmtN(b0-prog.xp), l:lv+1}) + '</span></div></div>';
+  document.querySelectorAll('#achTabs button').forEach(b => b.classList.toggle('on', b.dataset.tab === achTab));
+  const box = $('achBody'); let h = '';
+  if(achTab === 'general'){
+    const g = ACH.filter(a => a.group === 'general');
+    h = g.map(achCard).join('');
+  } else if(achTab === 'cats'){
+    catKeys().forEach(k => {
+      const list = ACH.filter(a => a.group === k); if(!list.length) return;
+      const got = list.filter(a => prog.ach[a.id]).length, c = CATS[k];
+      const meds = list.map(a => '<span class="' + (prog.ach[a.id] ? '' : 'off') + '">' + TIERS[a.tier].i + '</span>').join('');
+      const next = list.find(a => !prog.ach[a.id]);
+      const sb = next ? (P(next.n) + ' · ' + fmtN(Math.min(statVal(next.stat), next.goal)) + '/' + fmtN(next.goal)) : '★ ' + t('unlockedLbl');
+      h += '<div class="acat' + (achOpenCat === k ? ' open' : '') + '"><button class="acat-h" data-act="cat" data-v="' + k + '"><span class="e" style="--cc:' + c.c + '">' + c.e + '</span>' +
+        '<span class="tx"><span class="nm">' + P(c.n) + '</span><span class="sb">' + sb + '</span></span><span class="meds">' + meds + '</span><span class="ar">▶</span></button>' +
+        '<div class="acat-b">' + list.map(achCard).join('') + '</div></div>';
+    });
+  } else {
+    const av = avatarList(), ti = titleList();
+    h += '<div class="csec"><span>🎨 ' + t('collAv') + '</span><span>' + av.filter(avOwned).length + '/' + av.length + '</span></div><div class="avgrid">' +
+      av.map(x => '<button class="avb' + (avOwned(x) ? '' : ' lock') + (prog.avatar === x.id ? ' on' : '') + '" data-act="av" data-v="' + x.id + '">' + x.id + '</button>').join('') + '</div>';
+    h += '<div class="csec"><span>🏷️ ' + t('collTi') + '</span><span>' + ti.filter(x => x.owned).length + '/' + ti.length + '</span></div><div class="tilist">' +
+      ti.map(x => { const on = x.owned && P(currentTitle()) === P(x.n) && (prog.title === x.id || (!prog.title && x.lvl && levelTitleOf(lv) === x.n));
+        return '<button class="tirow' + (x.owned ? '' : ' lock') + (on ? ' on' : '') + '" data-act="ti" data-v="' + x.id + '"><span>' + P(x.n) + '</span><span class="st">' + (on ? '✓ ' + t('equipped') : (x.owned ? '' : '🔒 ' + (x.lvl ? t('level',{n:x.lvl}) : P(x.ach.n)))) + '</span></button>'; }).join('') + '</div>';
+    h += '<div class="csec"><span>🔓 ' + t('collCo') + '</span></div><div class="tilist">' +
+      [30,50].map(n => { const a = ACH.find(x => x.rw.len === n), ok = lenUnlocked(n);
+        return '<div class="tirow' + (ok ? '' : ' lock') + '" style="cursor:default"><span>' + t('rwLen',{n:n}) + '</span><span class="st">' + (ok ? '✓ ' + t('unlockedLbl') : '🔒 ' + P(a.n)) + '</span></div>'; }).join('') + '</div>';
+    h += '<div class="chint">' + (collHint || t('hintTap')) + '</div>';
+  }
+  box.innerHTML = h;
+}
+function goAch(){ showScreen('ach'); renderAch(); }
+// ----- resumen de partida -----
+function nearAch(n){
+  return ACH.filter(a => !prog.ach[a.id] && a.goal > 1).map(a => ({a, v:Math.min(statVal(a.stat), a.goal)}))
+    .filter(x => x.v / x.a.goal >= .5).sort((x,y) => y.v / y.a.goal - x.v / x.a.goal).slice(0, n);
+}
+function renderSumProg(){
+  const box = $('sumProg');
+  if(returnTo !== 'home'){ box.classList.add('hidden'); return; }
+  box.classList.remove('hidden');
+  const lv = levelOf(prog.xp), a0 = levelStart(lv), b0 = levelStart(lv+1);
+  let h = '<div class="l1"><span>+' + fmtN(gameXp) + ' XP</span><span>' + t('sumLevel',{t:P(currentTitle()), n:lv}) + '</span></div>' +
+    '<div class="xpbar"><i style="width:' + Math.max(2,(prog.xp-a0)/(b0-a0)*100) + '%"></i></div>';
+  if(sessionUnlocked.length){
+    h += '<h4>' + t('sumNew') + '</h4>' + sessionUnlocked.map(id => { const a = ACH_BY_ID[id]; return '<div class="it"><span>' + TIERS[a.tier].i + ' ' + P(a.n) + '</span><small>+' + (a.rw.xp || TIERS[a.tier].xp) + ' XP</small></div>'; }).join('');
+  }
+  const near = nearAch(2);
+  if(near.length){
+    h += '<h4>' + t('sumNear') + '</h4>' + near.map(x => '<div class="it"><span>' + P(x.a.n) + '</span><small>' + fmtN(x.v) + '/' + fmtN(x.a.goal) + '</small></div>').join('');
+  }
+  box.innerHTML = h;
+}
 
 const pk = $('btnPeek');
 pk.addEventListener('pointerdown', e => { try{ pk.setPointerCapture(e.pointerId); }catch(_){} startPeek(); e.preventDefault(); });
@@ -1356,5 +1761,6 @@ pk.addEventListener('blur', endPeek);
 buildCatGrid();
 applyLang();
 </script>
+<div id="toasts" aria-live="polite"></div>
 </body>
 </html>
